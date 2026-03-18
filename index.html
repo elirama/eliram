@@ -3,157 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eliram.co | AI Logos</title>
+    <title>eliram.co</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html {
-            height: 100%;
-            font-family: 'Inter', sans-serif;
-            color: white;
-            overflow: hidden;
-            background-color: black;
-        }
+        body, html { height: 100%; font-family: 'Inter', sans-serif; color: white; background-color: black; overflow: hidden; }
 
-        /* Background Video Styling */
         #video-viewport {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden; background: black;
         }
 
         video {
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            position: absolute;
-            top: 50%;
-            left: 50%;
+            min-width: 100%; min-height: 100%; width: auto; height: auto;
+            position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            filter: brightness(0.4); /* Makes text easier to read */
+            filter: brightness(0.4) contrast(1.1);
         }
 
-        /* Overlay Content */
         .container {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
         }
 
-        .logo {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
-        }
+        .logo { font-size: 3.5rem; font-weight: 700; letter-spacing: -2px; margin-bottom: 5px; }
+        .tagline { font-size: 1rem; opacity: 0.6; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 60px; }
 
-        .tagline {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            opacity: 0.8;
-        }
-
-        /* Star Wars Quote Section */
-        #quote-container {
-            max-width: 600px;
-            min-height: 80px;
-            margin-bottom: 40px;
-        }
-
-        #quote {
-            font-style: italic;
-            font-size: 1.5rem;
-            line-height: 1.4;
-            transition: opacity 0.5s ease-in-out;
-        }
+        #quote-container { height: 100px; max-width: 600px; padding: 0 20px; }
+        #quote { font-style: italic; font-size: 1.4rem; line-height: 1.6; transition: opacity 0.8s; color: #eee; }
 
         .cta-button {
-            padding: 15px 40px;
-            font-size: 1rem;
-            font-weight: 700;
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-top: 50px; padding: 18px 50px; font-size: 0.9rem; font-weight: 700;
+            color: white; border: 1.5px solid white; text-decoration: none;
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            text-transform: uppercase; letter-spacing: 2px;
         }
+        .cta-button:hover { background: white; color: black; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
 
-        .cta-button:hover {
-            background: white;
-            color: black;
-        }
-
-        footer {
-            position: absolute;
-            bottom: 20px;
-            font-size: 0.8rem;
-            opacity: 0.5;
-        }
+        footer { position: absolute; bottom: 30px; font-size: 0.7rem; opacity: 0.3; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
     <div id="video-viewport">
-        <video autoplay muted loop playsinline poster="https://cdn.pixabay.com/video/2021/07/23/82464-579477005_large.jpg">
-            <source src="https://cdn.pixabay.com/video/2021/07/23/82464-579477005_large.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="bg-video.mp4" type="video/mp4">
         </video>
     </div>
 
     <div class="container">
-        <div class="logo">eliram.co</div>
-        <div class="tagline">Create professional logos quickly with AI.</div>
-
+        
         <div id="quote-container">
-            <p id="quote">"The Force will be with you. Always."</p>
+            <p id="quote">"I love you. I know."</p>
         </div>
 
-        <a href="#" class="cta-button">Start Creating</a>
-
-        <footer>Copyright © 2026 eliram.co - All Rights Reserved.</footer>
+        <footer>&copy; 2026 ELIRAM.CO - ALL RIGHTS RESERVED</footer>
     </div>
 
     <script>
         const quotes = [
-            "The Force will be with you. Always.",
+            "I love you. I know.",
             "Do. Or do not. There is no try.",
+            "The Force will be with you. Always.",
             "I find your lack of faith disturbing.",
             "Never tell me the odds!",
             "This is the way.",
-            "I love you. I know.",
             "Fear is the path to the dark side.",
+            "Your focus determines your reality.",
             "In my experience, there is no such thing as luck.",
-            "Chewie, we're home.",
-            "Your focus determines your reality."
+            "Chewie, we're home."
         ];
 
-        function getRandomQuote() {
-            const quoteElement = document.getElementById('quote');
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            
-            // Fade out, change, fade in
-            quoteElement.style.opacity = 0;
+        function updateQuote() {
+            const el = document.getElementById('quote');
+            el.style(opacity = 0);
             setTimeout(() => {
-                quoteElement.innerText = `"${quotes[randomIndex]}"`;
-                quoteElement.style.opacity = 1;
-            }, 500);
+                el.innerText = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
+                el.style.opacity = 1;
+            }, 800);
         }
 
-        // Change quote every 7 seconds
-        setInterval(getRandomQuote, 7000);
-        // Initial random quote
-        getRandomQuote();
+        setInterval(updateQuote, 6000);
+        updateQuote(); // Initialize
     </script>
 </body>
 </html>
