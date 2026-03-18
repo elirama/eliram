@@ -74,18 +74,23 @@
             "In my experience, there is no such thing as luck.",
             "Chewie, we're home."
         ];
-
+        
         function updateQuote() {
             const el = document.getElementById('quote');
-            el.style(opacity = 0);
+            // Corrected: .style.opacity is a property, not a function
+            el.style.opacity = 0; 
+            
             setTimeout(() => {
                 el.innerText = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
                 el.style.opacity = 1;
             }, 800);
         }
-
+        
+        // Change every 6 seconds
         setInterval(updateQuote, 6000);
-        updateQuote(); // Initialize
+        
+        // Run once on load
+        updateQuote();
     </script>
 </body>
 </html>
