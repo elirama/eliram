@@ -53,7 +53,7 @@
         .tagline { font-size: 1rem; opacity: 0.6; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 60px; }
 
         #quote-container { height: 100px; max-width: 600px; padding: 0 20px; z-index: 1;}
-        #quote { font-style: italic; font-size: 1.4rem; line-height: 1.6; transition: opacity 0.8s; color: #eee; }
+        #quote { font-style: italic; font-size: 2.4rem; line-height: 1.6; transition: opacity 0.8s; color: #eee; font-family: 'Playfair Display', Georgia, serif; }
 
         .cta-button {
             margin-top: 50px; padding: 18px 50px; font-size: 0.9rem; font-weight: 700;
@@ -137,7 +137,7 @@
                 const randomIndex = Math.floor(Math.random() * quotes.length);
                 el.innerText = `"${quotes[randomIndex]}"`;
                 el.style.opacity = 1;
-            }, 6000);
+            }, 800);
         }
         
         // Change every 6 seconds
