@@ -21,6 +21,14 @@
             filter: brightness(0.4) contrast(1.1);
         }
 
+        #bg-video {
+            transition: opacity 1s ease-in-out;
+            opacity: 1;
+        }
+        .fade-out {
+            opacity: 0 !important;
+        }
+
         .container {
             height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
@@ -47,7 +55,7 @@
 <body>
 
     <div id="video-viewport">
-        <video autoplay muted loop playsinline id="bg-video">
+        <video autoplay muted playsinline id="bg-video">
             <source src="bg-video.mp4" type="video/mp4">
         </video>
     </div>
@@ -62,6 +70,25 @@
     </div>
 
     <script>
+        const video = document.getElementById('bg-video');
+
+        video.addEventListener('timeupdate', function() {
+            // Check if we are within the last 1 second of the video
+            const buffer = 1; 
+            if (this.currentTime > (this.duration - buffer)) {
+                // Start fading out
+                video.style.opacity = 0;
+            }
+        });
+        
+        video.addEventListener('ended', function() {
+            // Reset to start
+            video.currentTime = 0;
+            video.play();
+            // Fade back in
+            video.style.opacity = 1;
+        });
+        
         const quotes = [
             "I love you. I know.",
             "Do. Or do not. There is no try.",
