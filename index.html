@@ -77,11 +77,14 @@
         
         function updateQuote() {
             const el = document.getElementById('quote');
-            // Corrected: .style.opacity is a property, not a function
+            if (!el) return; // Safety check
+        
+            // FIX: Changed from el.style(...) to el.style.opacity = ...
             el.style.opacity = 0; 
             
             setTimeout(() => {
-                el.innerText = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                el.innerText = `"${quotes[randomIndex]}"`;
                 el.style.opacity = 1;
             }, 800);
         }
